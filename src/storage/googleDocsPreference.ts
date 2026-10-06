@@ -4,9 +4,9 @@ export const GOOGLE_DOCS_DENSITY_KEY = 'daggerheart-statblocks.google-docs-densi
 
 export function loadGoogleDocsDensity(): GoogleDocsDensity {
   try {
-    return localStorage.getItem(GOOGLE_DOCS_DENSITY_KEY) === 'compact' ? 'compact' : 'full'
+    return localStorage.getItem(GOOGLE_DOCS_DENSITY_KEY) === 'full' ? 'full' : 'compact'
   } catch {
-    return 'full'
+    return 'compact'
   }
 }
 

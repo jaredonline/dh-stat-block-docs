@@ -99,13 +99,13 @@ describe('app integration', () => {
     expect(parseLibrary(localStorage.getItem(STORAGE_KEY)!).blocks).toEqual([])
   })
 
-  it('persists the Google Docs density separately and leaves it at Full by default', () => {
+  it('defaults the Google Docs density to Compact and persists the separate preference', () => {
     mount()
     const group = host.querySelector('[role="group"][aria-label="Google Docs layout"]')!
     const full = [...group.querySelectorAll('button')].find(button => button.textContent === 'Full')!
     const compact = [...group.querySelectorAll('button')].find(button => button.textContent === 'Compact')!
-    expect(full.getAttribute('aria-pressed')).toBe('true')
-    expect(compact.getAttribute('aria-pressed')).toBe('false')
+    expect(full.getAttribute('aria-pressed')).toBe('false')
+    expect(compact.getAttribute('aria-pressed')).toBe('true')
     click(compact)
     expect(compact.getAttribute('aria-pressed')).toBe('true')
     expect(localStorage.getItem('daggerheart-statblocks.google-docs-density.v1')).toBe('compact')

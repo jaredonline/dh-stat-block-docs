@@ -174,6 +174,8 @@ test('copies Markdown and HTML as source and Google Docs as two rich representat
   await page.getByRole('button', { name: 'Copy HTML', exact: true }).click()
   await expect(page.locator('.notice')).toContainText('HTML source copied')
   const density = page.getByRole('group', { name: 'Google Docs layout' })
+  await expect(density.getByRole('button', { name: 'Compact', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await density.getByRole('button', { name: 'Full', exact: true }).click()
   await expect(density.getByRole('button', { name: 'Full', exact: true })).toHaveAttribute('aria-pressed', 'true')
   await page.getByRole('button', { name: 'Copy for Google Docs', exact: true }).click()
   await expect(page.locator('.notice')).toContainText('Google Docs version copied — paste normally into Docs')
